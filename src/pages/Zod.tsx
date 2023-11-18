@@ -1,26 +1,47 @@
 import { z } from "zod"
 import { Container } from "../components/Container/Container"
+import { fromZodError } from "zod-validation-error"
 
 
 
 const UserSchema = z.object({
-    name: z.string().min(2).max(32),
+    id: z.union([z.string(), z.number()]),
+    name: z.string().min(
+        3, 'Min length must be 3'
+    ).max(
+        32, 'name should be shorter than 32 characters'
+    ),
     age: z.number().gt(0),
     dob: z.date().optional(),
     isProgrammer: z.boolean().default(true).optional(),
-    hobby: z.enum(['coding', 'driving'])
+    hobby: z.enum(['coding', 'driving']),
+    friends: z.array(z.string().nonempty())
 })
 type User = z.infer<typeof UserSchema>
 
 const user : User = { 
+    id: 3,
     name: 'Bant',
     age: 20,
     dob: new Date(),
     isProgrammer: true,
-    hobby: 'coding'
+    hobby: 'coding',
+    friends: ['Martin']
 }
 
+// const brandEmail = z
+//     .string()
+//     .email()
+//     .refine(val => val.endsWith(".ru"), {
+//         message: 'Domain is not suported'
+//     })
+
 console.log(UserSchema.safeParse(user).success)
+
+const results = UserSchema.safeParse(user)
+if(!results.success) {
+    console.log(fromZodError(results.error))
+}
  
 const Zod = () => {
   return (
