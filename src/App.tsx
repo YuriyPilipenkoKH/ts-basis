@@ -1,30 +1,19 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Zod from "./pages/Zod";
 
-// import logo from './img/stackoverflow.svg';
-import './css/App.css';
-import { iconstackoverflow } from './img/icons';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div  className="App-logo">
-        {iconstackoverflow}
-        </div>
-          
-        <p>
-          Chck this out <br />
-          <code>ts-basis.tsx</code> 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          rel="noopener noreferrer"
-        >
-          Zod validation
-        </a>
-      </header>
-    </div>
-  );
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route  path="zod" element={<Zod/>} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+
+  )
+  
 }
 
 export default App;
