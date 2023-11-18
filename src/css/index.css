@@ -1,10 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Montserrat:wght@400;600&display=swap');
+
+
+:root {
+
+  --fone-color: #fef9f9;
+  --sel-color: #F7F7FB;
+  
+  --yellow: #ffc107;
+  --white: #ffffff;
+  --white-bg: #fdf7f2;
+  
+  --black: #121417;
+  --semi-black: #12141780;
+  --black-20: #12141733;
+
+  --medium-blue: #76bcf9;
+  --blue: #3470FF;
+  --hover-blue: #0B44CD;
+
+  --light-blue: #cce4fb;
+  --green: #00c3ad;
+  --red: #f43f5e;
+  --grey: #8A8A89;
+  
+  
+}
 body {
+  overflow-x: hidden;
+  background-color: var(--background-color);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: -apple-system, Manrope, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: all 1s ease-in-out;
 }
 
 code {
