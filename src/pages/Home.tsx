@@ -24,7 +24,7 @@ const Home = () => {
      </NavBar>
 
     </header>
-  </div>
+   </div>
   )
 }
 
