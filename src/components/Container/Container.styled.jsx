@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
     display: grid;
-    place-items: center;
+    /* place-items: center; */
     gap: 2em;
-    grid-template-rows: 90px auto 90px;
+    grid-template-rows: 400px auto ;
   
     background-color: #282c34;
     margin: 0 auto;
@@ -19,7 +19,7 @@ export const MainContainer = styled.div`
 
     @media screen and (min-width: 1280px) {
         min-width: 100%;
-        padding: 0 1em;
+       
     }
 
     /* &>.wrapper {

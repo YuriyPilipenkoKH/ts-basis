@@ -1,6 +1,7 @@
 import { z } from "zod"
 import { Container } from "../components/Container/Container"
 import { fromZodError } from "zod-validation-error"
+import { ToMain } from "./Pages.styled"
 
 
 
@@ -36,7 +37,7 @@ const user : User = {
 //         message: 'Domain is not suported'
 //     })
 
-console.log(UserSchema.safeParse(user).success)
+// console.log(UserSchema.safeParse(user).success)
 
 const results = UserSchema.safeParse(user)
 if(!results.success) {
@@ -46,6 +47,7 @@ if(!results.success) {
 const Zod = () => {
   return (
     <Container>
+        <ToMain to="/">Home</ToMain>
       zodd
    
     </Container>

@@ -5,7 +5,7 @@ import { NavBar } from "./Pages.styled"
 
 const Home = () => {
   return (
-    // <div className="App">
+    <div className="App">
     <header className="App-header">
       <div  className="App-logo">
       {iconstackoverflow}
@@ -15,13 +15,16 @@ const Home = () => {
         Chck this out <br />
         <code>ts-basis.tsx</code> 
       </p>
-      <NavBar>
+      {/* <input type="text" /> */}
 
+      <NavBar>
       <Link to="/zod">Zod validation</Link>
-      <Link to="/products">Products</Link>
+      <Link to="/yup">Yup HookForm</Link>
+      <Link to="/temp">TS templates</Link>
      </NavBar>
+
     </header>
-//   </div>
+  </div>
   )
 }
 

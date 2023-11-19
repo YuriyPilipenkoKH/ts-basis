@@ -17,14 +17,17 @@
   --medium-blue: #76bcf9;
   --blue: #3470FF;
   --hover-blue: #0B44CD;
+  --accent-blue: #61dafb;
 
   --light-blue: #cce4fb;
   --green: #00c3ad;
   --red: #f43f5e;
   --grey: #8A8A89;
+  --bisque: #FFE4C4;
   
   
 }
+
 body {
   overflow-x: hidden;
   background-color:  #282c34;
@@ -48,7 +51,7 @@ code {
 .App-logo {
   height: 40vmin;
   fill: transparent;
-  width: 400px;
+  width: 200px;
 }
 
 .stackoverflow {
