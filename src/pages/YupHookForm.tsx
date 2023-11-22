@@ -65,7 +65,10 @@ const YupHookForm = () => {
   return (
     <Container>
         <ToMain to="/">Home</ToMain>
-      <HookedForm onSubmit={handleSubmit(onSubmit)} noValidate>
+      <HookedForm 
+        onSubmit={handleSubmit(onSubmit)}   
+        autoComplete="off"
+        noValidate >
         <Label> Name
             <Input
             {...register('name')}

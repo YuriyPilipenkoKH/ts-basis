@@ -12,6 +12,12 @@ const UserSchema = z.object({
     ).max(
         32, 'name should be shorter than 32 characters'
     ),
+    email: z
+        .string()
+        .email('email is not valid')
+        .refine((val) => !val.endsWith('.ru'), {
+            message: 'Domain is not supported',
+          }),
     age: z.number().gt(0),
     dob: z.date().optional(),
     isProgrammer: z.boolean().default(true).optional(),
@@ -24,6 +30,7 @@ const user : User = {
     id: 3,
     name: 'Bant',
     age: 20,
+    email: 'bant@mail.com',
     dob: new Date(),
     isProgrammer: true,
     hobby: 'coding',

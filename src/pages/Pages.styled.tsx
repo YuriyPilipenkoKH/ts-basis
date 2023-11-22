@@ -34,13 +34,20 @@ export const Input = styled.input<InputProps>`
     padding: 2px 8px;
     background-color: #282c34;
     border: 2px solid #222;
-
+    outline: none;
     border-radius: 8px;
     color: #888;
-    border-color: ${({ errors }) => 
-    (errors ? "crimson" : "#222")};
-    /* border-color: ${({ errors, isValid }) => 
-    (errors ? "crimson" : isValid ? "#080" : "#222")}; */
+    /* border-color: ${({ errors }) => 
+    (errors ? "crimson" : "#222")}; */
+    border-color: ${({ errors, isValid }) => 
+    (errors ? "crimson" : isValid ? "#080" : "#222")};
+
+    &:focus-visible {
+        border-color: #ccc;
+    }
+    &:-internal-autofill-selected{
+        background-color: #ff0 !important;
+    }
 `;
 export const ErrorWrap = styled.div`
  
