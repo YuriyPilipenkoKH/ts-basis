@@ -19,7 +19,8 @@ const Home = () => {
 
       <NavBar>
       <Link to="/zod">Zod validation</Link>
-      <Link to="/yup">Yup HookForm</Link>
+      <Link to="/yupform">Yup HookForm</Link>
+      <Link to="/zform">Zod HookForm</Link>
       <Link to="/temp">TS templates</Link>
      </NavBar>
 
