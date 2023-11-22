@@ -1,3 +1,4 @@
+import fetchUsers from "../lib/fetchUsers"
 import { ToMain } from "./Pages.styled"
 
 // const ban: string = 'ban'
@@ -35,6 +36,8 @@ import { ToMain } from "./Pages.styled"
 
 
 const Temp = () => {
+
+    fetchUsers()
   return (
 
     <div>

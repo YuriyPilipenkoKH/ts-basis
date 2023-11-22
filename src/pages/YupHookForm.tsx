@@ -50,7 +50,7 @@ const YupHookForm = () => {
     } = formState
     
     const onSubmit = (data:{}) => {
-        console.log('Form summited',data)
+        console.log('Form submited',data)
         
     };
 
