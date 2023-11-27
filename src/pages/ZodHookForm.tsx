@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form"
 import { Container } from "../components/Container/Container"
-import { ValidationSchema } from "../models/auth"
+import { FormInput, ValidationSchema } from "../models/auth"
 import { ErrorWrap, HookedForm, Input, Label, ToMain } from "./Pages.styled"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from "react";
 import { Button } from "../components/Button/Button";
-
 
 const ZodHookForm = () => {
     const {
@@ -13,14 +12,14 @@ const ZodHookForm = () => {
         handleSubmit,
         formState,
         reset,
-    } = useForm({
+    } = useForm<FormInput>({
         defaultValues: {
             name: '',
             email: '',
             password: ''
         },
         mode:'all',
-        resolver: zodResolver(ValidationSchema ),
+        resolver: zodResolver(ValidationSchema),
     })
     const {
         errors,

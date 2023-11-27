@@ -1,12 +1,15 @@
 import { z } from "zod"
 import { emailAvailable } from "../lib/emailAvailable";
 
+
+
+
 export const ValidationSchema = z.object({
     name: z
         .string()
         .trim()
         .min(3, 'Name must be 3 or more characters long')
-        .max( 32, 'NAme should be shorter than 32 characters')
+        .max( 32, 'Name should be shorter than 32 characters')
         .refine((val) => !val.toLowerCase().startsWith('qwe'), {
             message: 'Enter a different name'
           })
@@ -44,3 +47,25 @@ export const ValidationSchema = z.object({
             message: "Include capital letters and numbers" 
         }),      
 })
+
+   export type FormInput = z.infer <typeof ValidationSchema >
+
+   //=============================
+//    const form: number[] =[2,14]
+//     form.push(7)
+//     form[12] = 12
+
+//     const nuller =(ara:number[]) => {
+//         // ara = [] //  does not work
+//         ara.length = 0
+//     }
+   
+// //   nuller(form)
+//     console.log(form)
+//     console.log(form[10])
+
+//     const undell : readonly number[] = [22,1,44]
+//     console.log(undell)
+
+//     const cort01 : [string, number] = ["Bant", 4]
+//     console.log(cort01)
