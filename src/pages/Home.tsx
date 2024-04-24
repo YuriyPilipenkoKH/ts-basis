@@ -12,7 +12,7 @@ const Home = () => {
       </div>
         
       <p>
-        Chck this out <br />
+        Check this out <br />
         <code>ts-basis.tsx</code> 
       </p>
       {/* <input type="text" /> */}
@@ -22,6 +22,7 @@ const Home = () => {
       <Link to="/yupform">Yup HookForm</Link>
       <Link to="/zform">Zod HookForm</Link>
       <Link to="/temp">TS templates</Link>
+      <Link to="/userForm">UserForm</Link>
      </NavBar>
 
     </header>

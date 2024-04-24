@@ -1,9 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Zod from "./pages/Zod";
 import YupHookForm from "./pages/YupHookForm";
 import Temp from "./pages/Temp";
 import ZodHookForm from "./pages/ZodHookForm";
+import UserForm from "./pages/UserForm";
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Route  path="yupform" element={<YupHookForm/>} />
         <Route  path="zform" element={<ZodHookForm/>} />
         <Route  path="temp" element={<Temp/>} />
+        <Route  path="userForm" element={<UserForm/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
