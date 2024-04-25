@@ -23,6 +23,9 @@ transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out; 
   background: var(--hover-blue);
  }
+ &:disabled {
+  background: var(--grey);
+ }
 `
 export const StyledFlatButton = styled.button`
        padding: 0;

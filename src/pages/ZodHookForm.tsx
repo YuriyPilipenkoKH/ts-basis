@@ -10,6 +10,7 @@ const ZodHookForm = () => {
     const {
         register, 
         handleSubmit,
+        getValues,
         formState,
         reset,
     } = useForm<FormInput>({
@@ -26,8 +27,12 @@ const ZodHookForm = () => {
         isDirty,
         isValid ,
         isSubmitSuccessful,
+        isSubmitting,
+
     } = formState
     
+    console.log('isValid',isValid, 'isDirty',isDirty)
+
     const onSubmit = (data:{}) => {
         console.log('Form submited',data)
         
@@ -38,7 +43,14 @@ const ZodHookForm = () => {
             reset()
         }
     }, [isSubmitSuccessful, reset])
+    useEffect(() => {
+        handleGetValue()
+    }, [errors])
 
+    const handleGetValue = () => {
+        const values = getValues(); // Call getValues to retrieve form values
+        console.log('Form values:', values);
+    };
   return (
     <Container>
     <ToMain to="/">Home</ToMain>
@@ -50,6 +62,7 @@ const ZodHookForm = () => {
         <Label> Name
             <Input
             {...register('name')}
+            isDirty={isDirty as boolean | undefined}
             errors={errors?.name as boolean | undefined} 
             />
             {errors?.name && (
@@ -59,6 +72,7 @@ const ZodHookForm = () => {
         <Label> Email
             <Input
             {...register('email')}
+            isDirty={isDirty as boolean | undefined}
             errors={errors?.email as boolean | undefined}
             />
             {errors?.email && (
@@ -68,6 +82,7 @@ const ZodHookForm = () => {
         <Label> Password
             <Input
             {...register('password')}
+            isDirty={isDirty as boolean | undefined}
             errors={errors?.password as boolean | undefined} 
             />
             {errors?.password && (
@@ -77,8 +92,9 @@ const ZodHookForm = () => {
 
         <Button 
             type="submit" 
-            disabled={!isDirty || !isValid}
+            disabled={!isDirty || !isValid || isSubmitting}
             className='sub'>submit</Button>
+
       </HookedForm>
 
     </Container>

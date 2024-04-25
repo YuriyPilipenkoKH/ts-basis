@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import  { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
+import { StUserForm } from './Pages.styled'
 
 function UserForm() {
     const [logError, setLogError] = useState<string>('')
@@ -28,39 +29,45 @@ function UserForm() {
         isValid ,
         isSubmitting,
     } = formState
+
+    const onSubmit = async (data: userSchemaType) => {
+        console.log('data' , data)
+    }
   return (
     <>
-    <form
-        className='flex flex-col gap-2'
+    <StUserForm
+        onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
         noValidate>
-            <label > First Name
+            <label >  <div>First Name</div>
                 <input 
                  {...register('firstName')}
                 type="text" />
             </label>
-            <label > Last Name
+            <label > <div>Last Name</div>
                 <input 
                  {...register('lastName')}
                 type="text" />
             </label>
-            <label > Birthday
+            <label > <div>Birthday</div>
                 <input 
                  {...register('birthday')}
                 type="date" />
             </label>
-            <label > Email
+            <label > <div>Email</div>
                 <input 
                  {...register('email')}
                 type="text" />
             </label>
-            <label > Phone
+            <label > <div>Phone</div>
                 <input 
                  {...register('phone')}
                 type="text" />
             </label>
 
-    </form>
+            <button type='submit'>submit</button>
+
+    </StUserForm>
     </>
   )
 }
