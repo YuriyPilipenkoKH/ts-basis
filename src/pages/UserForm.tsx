@@ -2,11 +2,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import  { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
-import { StUserForm } from './Pages.styled'
+import { Field, StUserForm } from './Pages.styled'
 
 function UserForm() {
     const [logError, setLogError] = useState<string>('')
     const [phoneError, setPhoneError] = useState<string>('')
+    const [isFirstNamelValid, setIsFirstNameValid] = useState<boolean>(false);
+    const [isLastNamelValid, setIsLastNameValid] = useState<boolean>(false);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+    const [isPhoneValid, setIPhoneValid] = useState<boolean>(false);
     const {
         register, 
         handleSubmit,
@@ -40,9 +44,10 @@ function UserForm() {
         autoComplete="off"
         noValidate>
             <label >  <div>First Name</div>
-                <input 
+                {/* <Field
                  {...register('firstName')}
-                type="text" />
+                 validated ={!errors.firstName ? true : false}
+                type="text" /> */}
             </label>
             <label > <div>Last Name</div>
                 <input 

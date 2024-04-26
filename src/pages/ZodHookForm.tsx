@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form"
 import { Container } from "../components/Container/Container"
 import { FormInput, ValidationSchema } from "../models/auth"
-import { ErrorWrap, HookedForm, Input, Label, ToMain } from "./Pages.styled"
+import { ErrorWrap, Field, HookedForm, Input, Label, ToMain } from "./Pages.styled"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../components/Button/Button";
 
 const ZodHookForm = () => {
+    const [isNamelValid, setIsNameValid] = useState<boolean>(false);
+    const [isEmaillValid, setIsEmailValid] = useState<boolean>(false);
+    const [isPasswordlValid, setIsPasswordValid] = useState<boolean>(false);
     const {
         register, 
         handleSubmit,
@@ -31,7 +34,7 @@ const ZodHookForm = () => {
 
     } = formState
     
-    console.log('isValid',isValid, 'isDirty',isDirty)
+    // console.log('isValid',isValid, 'errors.name', errors.name)
 
     const onSubmit = (data:{}) => {
         console.log('Form submited',data)
@@ -43,14 +46,23 @@ const ZodHookForm = () => {
             reset()
         }
     }, [isSubmitSuccessful, reset])
-    useEffect(() => {
-        handleGetValue()
-    }, [errors])
+
 
     const handleGetValue = () => {
         const values = getValues(); // Call getValues to retrieve form values
-        console.log('Form values:', values);
+        // console.log('Form values:', values);
+        if (values.name && errors.name) {
+            setIsNameValid(true)
+        }
+        if (values.email && errors.email) {
+            setIsEmailValid(true)
+        }
+        if (values.password && errors.password) {
+            setIsPasswordValid(true)
+        }
     };
+
+
   return (
     <Container>
     <ToMain to="/">Home</ToMain>
@@ -60,30 +72,36 @@ const ZodHookForm = () => {
         autoComplete="off"
         noValidate >
         <Label> Name
-            <Input
-            {...register('name')}
-            isDirty={isDirty as boolean | undefined}
-            errors={errors?.name as boolean | undefined} 
-            />
-            {errors?.name && (
-            <ErrorWrap>{errors.name.message}</ErrorWrap>
-                )}    
+        <Field
+            {...register('name', 
+                {onChange: () => handleGetValue()}
+            )}
+            validated = { isNamelValid }
+            error = { !!errors.name  }
+            type="text" />
+        {errors?.name && (
+        <ErrorWrap>{errors.name.message}</ErrorWrap>
+            )}    
         </Label>
         <Label> Email
-            <Input
-            {...register('email')}
-            isDirty={isDirty as boolean | undefined}
-            errors={errors?.email as boolean | undefined}
+            <Field
+            {...register('email',
+            {onChange: () => handleGetValue()}
+            )}
+            validated = { isEmaillValid }
+            error = { !!errors.email  }
             />
             {errors?.email && (
             <ErrorWrap>{errors.email.message}</ErrorWrap>
                 )}   
         </Label>
         <Label> Password
-            <Input
-            {...register('password')}
-            isDirty={isDirty as boolean | undefined}
-            errors={errors?.password as boolean | undefined} 
+            <Field
+            {...register('password',
+            {onChange: () => handleGetValue()}
+            )}
+            validated = { isPasswordlValid }
+            error = { !!errors.password  }
             />
             {errors?.password && (
             <ErrorWrap>{errors.password.message}</ErrorWrap>

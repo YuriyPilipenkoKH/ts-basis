@@ -63,23 +63,23 @@ export const Label = styled.label`
     color: var(--accent-blue);
 `
 interface FieldProps {
-    validated: boolean;
-
+    validated: boolean 
+    error: boolean 
   }
 
 export const Field = styled('input', {
     shouldForwardProp: (prop: string) =>
-      isPropValid(prop) && !['validated'].includes(prop),
+      isPropValid(prop) && !['validated', 'error'].includes(prop),
   })<FieldProps>`
-    ${antInputStyles};
-    ${({ validated }) => ({
-      borderColor: validated  ? `#2196f3cc` : `#f5154dcd` ,
+    ${dartInputStyles};
+    ${({ validated ,error}) => ({
+      borderColor: !validated  ? `#111` : !error ? "#080" :`#f5154dcd` ,
       outline: 'none' ,
     })}
   `;
 
   interface InputProps {
-    errors?: boolean; // Define the 'errors' prop
+    errors?: boolean;
     isDirty?: boolean; 
   }
 
