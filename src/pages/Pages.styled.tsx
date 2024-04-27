@@ -73,7 +73,7 @@ export const Field = styled('input', {
   })<FieldProps>`
     ${dartInputStyles};
     ${({ validated ,error}) => ({
-      borderColor: !validated  ? `#111` : !error ? "#080" :`#f5154dcd` ,
+      borderColor: !validated  ? `#111` : error ? `#f5154dcd` : '#080',
       outline: 'none' ,
     })}
   `;
@@ -95,13 +95,13 @@ export const Field = styled('input', {
     })}
   `;
 
-export const Inputa = styled.input<InputProps>`
+export const FormInput = styled.input`
 
     height: 40px;
     width: 320px;
     padding: 2px 8px;
-    background-color: #282c34;
-    border: 2px solid #222;
+    background-color: transparent;
+    border: 2px solid #111;
     outline: none;
     border-radius: 8px;
     color: #888;
@@ -111,7 +111,7 @@ export const Inputa = styled.input<InputProps>`
         border-color: #ccc;
     }
     &:-internal-autofill-selected{
-        background-color: #ff0 !important;
+        background-color: #ff0 ;
     }
 `;
 
@@ -139,13 +139,29 @@ export const ToMain = styled(Link)`
 
 export const StUserForm = styled.form`
     display: grid;
-    place-items: center;
+    align-items: center;
     grid-column-gap: 12px;
-    grid-template-columns: 80px auto;
-
+    grid-template-columns: 100px auto;
+    grid-row-gap: 18px;
     padding: 22px;
+
     &> label{
         grid-column: span 2;
-
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        
+        &>div {
+            padding-left: 8px;
+            display: flex;
+            align-items: center;
+            color: #61dafb;
+        }
     }
+    &>button[type='submit']{
+        width: 240px;
+        grid-column: span 2;
+        justify-self: center;
+    }
+
 `

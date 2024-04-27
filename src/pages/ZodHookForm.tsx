@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Container } from "../components/Container/Container"
 import { FormInput, ValidationSchema } from "../models/auth"
-import { ErrorWrap, Field, HookedForm, Input, Label, ToMain } from "./Pages.styled"
+import { ErrorWrap, Field, HookedForm,  Label, ToMain } from "./Pages.styled"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from "react";
 import { Button } from "../components/Button/Button";
@@ -38,6 +38,9 @@ const ZodHookForm = () => {
 
     const onSubmit = (data:{}) => {
         console.log('Form submited',data)
+        setIsNameValid(false)
+        setIsEmailValid(false)
+        setIsPasswordValid(false)
         
     };
 
@@ -51,13 +54,13 @@ const ZodHookForm = () => {
     const handleGetValue = () => {
         const values = getValues(); // Call getValues to retrieve form values
         // console.log('Form values:', values);
-        if (values.name && errors.name) {
+        if (values.name && !errors.name) {
             setIsNameValid(true)
         }
-        if (values.email && errors.email) {
+        if (values.email && !errors.email) {
             setIsEmailValid(true)
         }
-        if (values.password && errors.password) {
+        if (values.password && !errors.password) {
             setIsPasswordValid(true)
         }
     };

@@ -2,7 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import  { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
-import { Field, StUserForm } from './Pages.styled'
+import {  FormInput,  StUserForm, ToMain } from './Pages.styled'
+import { Button } from '../components/Button/Button'
 
 function UserForm() {
     const [logError, setLogError] = useState<string>('')
@@ -39,40 +40,43 @@ function UserForm() {
     }
   return (
     <>
-    <StUserForm
-        onSubmit={handleSubmit(onSubmit)}
-        autoComplete="off"
-        noValidate>
-            <label >  <div>First Name</div>
-                {/* <Field
-                 {...register('firstName')}
-                 validated ={!errors.firstName ? true : false}
-                type="text" /> */}
-            </label>
-            <label > <div>Last Name</div>
-                <input 
-                 {...register('lastName')}
-                type="text" />
-            </label>
-            <label > <div>Birthday</div>
-                <input 
-                 {...register('birthday')}
-                type="date" />
-            </label>
-            <label > <div>Email</div>
-                <input 
-                 {...register('email')}
-                type="text" />
-            </label>
-            <label > <div>Phone</div>
-                <input 
-                 {...register('phone')}
-                type="text" />
-            </label>
-
-            <button type='submit'>submit</button>
-
-    </StUserForm>
+    <ToMain to="/">Home</ToMain>
+        <div className='w-[500px] mx-[auto]'>
+        <StUserForm
+            onSubmit={handleSubmit(onSubmit)}
+            autoComplete="off"
+            noValidate>
+                <label >  <div>First Name</div >
+                    <FormInput
+                     {...register('firstName')}
+                    type="text" />
+                </label>
+                <label > <div>Last Name</div>
+                    <FormInput
+                     {...register('lastName')}
+                    type="text" />
+                </label>
+                <label > <div>Birthday</div>
+                    <FormInput
+                     {...register('birthday')}
+                    type="date" />
+                </label>
+                <label > <div>Email</div>
+                    <FormInput
+                     {...register('email')}
+                    type="text" />
+                </label>
+                <label > <div>Phone</div>
+                    <FormInput
+                     {...register('phone')}
+                    type="text" />
+                </label>
+                <Button
+                type="submit"
+                disabled={!isDirty || !isValid || isSubmitting}
+                className='sub  '>submit</Button>
+        </StUserForm>
+        </div>
     </>
   )
 }
