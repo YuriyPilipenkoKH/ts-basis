@@ -54,7 +54,10 @@ function UserForm() {
             // isDopAvailable && 'text-orange-600'
             // )}
             type='button'
-            onClick={()=> setValue('role', 'editor')}
+            onClick={()=>{ 
+                setValue('role', 'editor')
+                handleGetValue()
+            }}
             >
              editor
             </button>
@@ -65,12 +68,16 @@ function UserForm() {
           key: '3',
           label: (
             <button type='button'
-            onClick={()=> setValue('role', 'viewer')}
+            onClick={()=> {
+                setValue('role', 'viewer')
+                handleGetValue()
+            }}
             >
             viewer
             </button>
           ),
         },
+
       ];
 
     console.log('isDirty',isDirty, 'isValid', isValid,'isSubmitting', isSubmitting)
@@ -218,7 +225,8 @@ function UserForm() {
                     )}
                      {...register('role',
                      {onChange: () =>{ 
-                        handleGetValue()
+                        console.log('role chenged')
+                         handleGetValue()
                     }}
                      )}
                     type="text" />
