@@ -34,7 +34,7 @@ const ZodHookForm = () => {
 
     } = formState
     
-    console.log('errors.name',errors.name, '!!errors.name', !!errors.name)
+    // console.log('errors.name',errors.name, '!!errors.name', !!errors.name)
 
     const onSubmit = (data:{}) => {
         console.log('Form submited',data)
@@ -48,7 +48,7 @@ const ZodHookForm = () => {
         if(isSubmitSuccessful) {
             reset()
         }
-    }, [isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful])
     useEffect(() => {
         handleGetValue()
     }, [])
@@ -56,7 +56,7 @@ const ZodHookForm = () => {
 
     const handleGetValue = () => {
         const values = getValues(); // Call getValues to retrieve form values
-        console.log('Form values:', values);
+        // console.log('Form values:', values);
         if (values.name && !errors.name) {
             setIsNameValid(true)
         }

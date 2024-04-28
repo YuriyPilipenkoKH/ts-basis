@@ -70,7 +70,7 @@ export const Field = styled('input', {
   })<FieldProps>`
     ${dartInputStyles};
     ${({ validated ,error}) => ({
-      borderColor: error ? `#f5154dcd` :!validated  ? `#111` : '#080',
+      borderColor: error ? `#f5154dcd` : validated  ? `#080` : '#111',
       outline: 'none' ,
     })}
   `;

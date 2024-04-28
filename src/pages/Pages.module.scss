@@ -29,8 +29,9 @@
     }
     &>button[type='submit']{
         width: 240px;
-        grid-column: span 2;
-        justify-self: center;
+        grid-column-start:  2;
+        // justify-self: center;
+       margin-left: 12px;
     }
 
 }
@@ -80,4 +81,24 @@
     &:disabled {
     background: var(--grey);
     }
+}
+
+.AuthError{
+    height: 40px;
+    color: #eee;
+    background-color: #dc2626cc;
+    font-size: 0.7rem;
+    line-height: 1.25rem/* 20px */;
+    padding: 12px 8px;
+    padding-right: 0.75rem/* 12px */;
+    border-radius: 0.375rem/* 6px */;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+
+    // margin-top: 1rem;
+
 }
