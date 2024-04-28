@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
 import {   ToMain } from './Pages.styled'
 import s from './Pages.module.scss'
+import { cn } from '../lib/utils'
 
 function UserForm() {
     const [logError, setLogError] = useState<string>('')
@@ -41,7 +42,7 @@ function UserForm() {
     }
     const handleGetValue = () => {
         const values = getValues(); // Call getValues to retrieve form values
-        // console.log('Form values:', values);
+        console.log('Form values:', values);
         if (values.firstName && !errors.firstName) {
             setIsFirstNameValid(true)
         }
@@ -70,8 +71,13 @@ function UserForm() {
             noValidate>
                 <label >  <div>First Name</div >
                     <input
-                    className={s.FormInput}
-                     {...register('firstName')}
+                    className={cn(s.FormInput, 
+                        !!errors.firstName ?  s.err : 
+                        isFirstNamelValid ? s.val : s.def,
+                    )}
+                     {...register('firstName', 
+                     {onChange: () => handleGetValue()}
+                     )}
                     type="text" />
                 </label>
                 <label > <div>Last Name</div>
