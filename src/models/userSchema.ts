@@ -4,10 +4,10 @@ import { z, ZodType } from 'zod';
 export const userSchema: ZodType<{
     firstName: string;
     lastName: string;
-    birthday: Date;
+    birthday: string;
     email: string;
     phone: string;
-    role: 'viewer' | 'editor'
+    // role: 'viewer' | 'editor'
 }> = z.object({
 
     firstName: z
@@ -22,8 +22,6 @@ export const userSchema: ZodType<{
     .regex(/^[a-zA-Z]+$|^[0-9]+$|^[\w\s]+$|^[\w\s_]+$/, { 
         message: "Use letters, numbers & underscore" 
     }),
-    birthday: z
-    .date(),
     email: z
     .string()
     .email('Email is not valid')
@@ -40,11 +38,15 @@ export const userSchema: ZodType<{
         // Remove regex if field is empty
         message: "Valid phone format: 095 345 6789"
     }),
-    role: z
-    .union([
-        z.literal('editor'),
-        z.literal('viewer'),
-    ])
+    birthday: z
+    // .date()
+    .string()
+    ,
+    // role: z
+    // .union([
+    //     z.literal('editor'),
+    //     z.literal('viewer'),
+    // ])
     
 })
 

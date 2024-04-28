@@ -21,7 +21,7 @@
             padding-left: 8px;
             display: flex;
             align-items: center;
-            color: #61dafb;
+
         }
         &>input{
             margin: 0 auto;
@@ -41,7 +41,7 @@
     width: 320px;
     padding: 2px 8px;
     background-color: transparent;
-    border: 2px solid #111;
+    border: 2px solid transparent;
     outline: none;
     border-radius: 8px;
     color: #888;
@@ -80,6 +80,7 @@
     }
     &:disabled {
     background: var(--grey);
+    cursor: none;
     }
 }
 
@@ -101,12 +102,19 @@
 
 
 }
+.def{
+    border-color: #111 ;
+}
 .err{
     border-color: crimson;
 }
 .val{
     border-color: #080 ;
 }
-.def{
-    border-color: #111 ;
+
+.lab_def{
+    color: #61dafb;
+}
+.lab_err{
+    color: crimson ;
 }

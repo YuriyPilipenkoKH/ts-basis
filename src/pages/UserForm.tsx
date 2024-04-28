@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import  { useEffect, useState } from 'react'
+import  { ChangeEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
 import {   ToMain } from './Pages.styled'
@@ -7,19 +7,20 @@ import s from './Pages.module.scss'
 import { cn } from '../lib/utils'
 
 function UserForm() {
-    const [logError, setLogError] = useState<string>('')
-    const [phoneError, setPhoneError] = useState<string>('')
+    // const [logError, setLogError] = useState<string>('')
+    // const [phoneError, setPhoneError] = useState<string>('')
     const [isFirstNamelValid, setIsFirstNameValid] = useState<boolean>(false);
     const [isLastNamelValid, setIsLastNameValid] = useState<boolean>(false);
     const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
     const [isPhoneValid, setIsPhoneValid] = useState<boolean>(false);
+    const [isBirthdayValid, setIsBirthdayValid] = useState<boolean>(false);
     const {
         register, 
         handleSubmit,
         formState,
         reset,
         getValues,
-        watch
+        setValue,
     } = useForm<userSchemaType>({
         defaultValues: {
             firstName: '',
@@ -35,14 +36,24 @@ function UserForm() {
         isDirty,
         isValid ,
         isSubmitting,
+        isSubmitSuccessful
     } = formState
+
+    console.log('isDirty',isDirty, 'isValid', isValid,'isSubmitting', isSubmitting)
 
     const onSubmit = async (data: userSchemaType) => {
         console.log('data' , data)
+        setIsFirstNameValid(false)
+        setIsLastNameValid(false)
+        setIsEmailValid(false)
+        setIsPhoneValid(false)
+        setIsBirthdayValid(false)
+
     }
     const handleGetValue = () => {
         const values = getValues(); // Call getValues to retrieve form values
         console.log('Form values:', values);
+
         if (values.firstName && !errors.firstName) {
             setIsFirstNameValid(true)
         }
@@ -55,11 +66,26 @@ function UserForm() {
         if (values.phone && !errors.phone) {
             setIsPhoneValid(true)
         }
+        if (values.birthday && !errors.birthday) {
+            setIsBirthdayValid(true)
+        }
     };
+    const changeBirthdayFormat =(e: ChangeEvent<HTMLInputElement>) => {
+        const formatedBirthday  = new Date(Date.parse(e.target.value));
+        console.log('formatedBirthday ',formatedBirthday )
+        // setValue('birthday', formatedBirthday)
+    }
+    
     useEffect(() => {
         handleGetValue()
     }, [])
-
+    
+    useEffect(() => {
+        if(isSubmitSuccessful) {
+            reset()
+        }
+    }, [isSubmitSuccessful])
+    
   return (
     <>
     <ToMain to="/">Home</ToMain>
@@ -69,50 +95,90 @@ function UserForm() {
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
             noValidate>
-                <label >  <div>First Name</div >
+                <label >  
+                    <div 
+                    className={cn(!!errors.firstName ? s.lab_err : s.lab_def)}>
+                        First Name
+                    </div >
                     <input
                     className={cn(s.FormInput, 
-                        !!errors.firstName ?  s.err : 
-                        isFirstNamelValid ? s.val : s.def,
+                        !isFirstNamelValid ? s.def : !!errors.firstName ?  s.err : s.val,
                     )}
                      {...register('firstName', 
                      {onChange: () => handleGetValue()}
                      )}
                     type="text" />
                 </label>
-                <label > <div>Last Name</div>
+                <label > 
+                    <div 
+                    className={cn(!!errors.lastName ? s.lab_err : s.lab_def)}>
+                        Last Name
+                    </div >
                     <input
-                    className={s.FormInput}
-                     {...register('lastName')}
+                    className={cn(s.FormInput, 
+                        !isLastNamelValid ? s.def : !!errors.lastName ?  s.err : s.val,
+                    )}
+                     {...register('lastName',
+                     {onChange: () => handleGetValue()}
+                     )}
                     type="text" />
                 </label>
-                <label > <div>Birthday</div>
+
+                <label > 
+                <div 
+                    className={cn(!!errors.email ? s.lab_err : s.lab_def)}>
+                       Email
+                    </div >
                     <input
-                    className={s.FormInput}
-                     {...register('birthday')}
+                    className={cn(s.FormInput, 
+                        !isEmailValid ? s.def : !!errors.email ?  s.err : s.val,
+                    )}
+                     {...register('email',
+                     {onChange: () => handleGetValue()}
+                     )}
+                    type="text" />
+                </label>
+                <label > 
+                <div 
+                    className={cn(!!errors.phone ? s.lab_err : s.lab_def)}>
+                        Phone
+                    </div >
+                    <input
+                    className={cn(s.FormInput, 
+                        !isPhoneValid ? s.def : !!errors.phone ?  s.err : s.val,
+                    )}
+                     {...register('phone',
+                     {onChange: () => handleGetValue()}
+                     )}
+                    type="text" />
+                </label>
+                <label > 
+                    <div 
+                    className={cn(!!errors.birthday ? s.lab_err : s.lab_def)}>
+                        Birthday
+                    </div >
+                    <input
+                    className={cn(s.FormInput, 
+                        !isBirthdayValid ? s.def : !!errors.birthday ?  s.err : s.val,
+                    )}
+                     {...register('birthday',
+                     {onChange: (e) =>{ 
+                        changeBirthdayFormat(e)
+                        handleGetValue()
+                    }}
+                     )}
                     type="date" />
                 </label>
-                <label > <div>Email</div>
-                    <input
-                    className={s.FormInput}
-                     {...register('email')}
-                    type="text" />
-                </label>
-                <label > <div>Phone</div>
-                    <input
-                    className={s.FormInput}
-                     {...register('phone')}
-                    type="text" />
-                </label>
                 <div className='h-[40px] px-4 col-start-2'>
-                {( errors?.firstName || errors?.lastName || errors?.email || errors?.phone ) && (
-                <div className={s.AuthError}>
-                {errors.firstName && <div>{errors?.firstName.message}</div>}
-                {!errors.firstName && errors.lastName && <div>{errors?.lastName.message}</div>}
-                {!errors.firstName && !errors.lastName && errors.email && <div>{errors?.email.message}</div>}
-                {!errors.firstName && !errors.lastName && !errors.email && errors.phone && <div>{errors?.phone.message}</div>}
-                </div>
-            )}   
+                {( errors?.firstName || errors?.lastName || errors?.email || errors?.phone || errors?.birthday ) && (
+                    <div className={s.AuthError}>
+                    {errors.firstName && <div>{errors?.firstName.message}</div>}
+                    {!errors.firstName && errors.lastName && <div>{errors?.lastName.message}</div>}
+                    {!errors.firstName && !errors.lastName && errors.email && <div>{errors?.email.message}</div>}
+                    {!errors.firstName && !errors.lastName && !errors.email && errors.phone && <div>{errors?.phone.message}</div>}
+                    {!errors.firstName && !errors.lastName && !errors.email && !errors.phone &&  errors.birthday && <div>{errors?.birthday.message}</div>}
+                    </div>
+                 )}   
                 </div>
                 <button
                 type="submit"
