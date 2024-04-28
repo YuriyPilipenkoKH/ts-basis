@@ -98,3 +98,17 @@ code {
   }
 }
 
+/* ant dropdown */
+.ant-dropdown .ant-dropdown-menu{
+  background: #555;
+  border: 2px solid #999;
+  width: 140px;
+}
+.ant-dropdown .ant-dropdown-menu>li>span{
+  color: #eee;
+  font-weight: 600;
+  transition: 0.5s ease;
+}
+.ant-dropdown-menu-item-active>span{
+  color: var(--green) !important;
+}

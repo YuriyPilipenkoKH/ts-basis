@@ -5,6 +5,11 @@ import { userSchema, userSchemaType } from '../models/userSchema'
 import {   ToMain } from './Pages.styled'
 import s from './Pages.module.scss'
 import { cn } from '../lib/utils'
+import { CiSquareChevDown } from "react-icons/ci";
+import { FaCaretSquareDown } from "react-icons/fa";
+import { Dropdown, MenuProps } from 'antd';
+
+
 
 function UserForm() {
     // const [logError, setLogError] = useState<string>('')
@@ -14,6 +19,7 @@ function UserForm() {
     const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
     const [isPhoneValid, setIsPhoneValid] = useState<boolean>(false);
     const [isBirthdayValid, setIsBirthdayValid] = useState<boolean>(false);
+    const [isRoleValid, setIsRoleValid] = useState<boolean>(false);
     const {
         register, 
         handleSubmit,
@@ -39,6 +45,34 @@ function UserForm() {
         isSubmitSuccessful
     } = formState
 
+    const items: MenuProps['items'] = [
+        {
+          key: '1',
+          label: (
+            <button
+            // className={cn('',
+            // isDopAvailable && 'text-orange-600'
+            // )}
+            type='button'
+            onClick={()=> setValue('role', 'editor')}
+            >
+             editor
+            </button>
+          ),
+        },
+    
+        {
+          key: '3',
+          label: (
+            <button type='button'
+            onClick={()=> setValue('role', 'viewer')}
+            >
+            viewer
+            </button>
+          ),
+        },
+      ];
+
     console.log('isDirty',isDirty, 'isValid', isValid,'isSubmitting', isSubmitting)
 
     const onSubmit = async (data: userSchemaType) => {
@@ -48,6 +82,7 @@ function UserForm() {
         setIsEmailValid(false)
         setIsPhoneValid(false)
         setIsBirthdayValid(false)
+        setIsRoleValid(false)
 
     }
     const handleGetValue = () => {
@@ -68,6 +103,9 @@ function UserForm() {
         }
         if (values.birthday && !errors.birthday) {
             setIsBirthdayValid(true)
+        }
+        if (values.role && !errors.role) {
+            setIsRoleValid(true)
         }
     };
     const changeBirthdayFormat =(e: ChangeEvent<HTMLInputElement>) => {
@@ -169,14 +207,41 @@ function UserForm() {
                      )}
                     type="date" />
                 </label>
+                <label className='relative'> 
+                    <div 
+                    className={cn(!!errors.role ? s.lab_err : s.lab_def)}>
+                        Role
+                    </div >
+                    <input
+                    className={cn(s.FormInput, 
+                        !isRoleValid ? s.def : !!errors.role ?  s.err : s.val,
+                    )}
+                     {...register('role',
+                     {onChange: () =>{ 
+                        handleGetValue()
+                    }}
+                     )}
+                    type="text" />
+                <Dropdown 
+                menu={{ items }} 
+                placement="bottomRight">
+                    <button 
+                    className='absolute right-6 top-2'
+                    type='button'>
+                        <CiSquareChevDown  size={25} />
+                    </button>
+                </Dropdown>
+
+                </label>
                 <div className='h-[40px] px-4 col-start-2'>
-                {( errors?.firstName || errors?.lastName || errors?.email || errors?.phone || errors?.birthday ) && (
+                {( errors?.firstName || errors?.lastName || errors?.email || errors?.phone || errors?.birthday || errors?.role ) && (
                     <div className={s.AuthError}>
                     {errors.firstName && <div>{errors?.firstName.message}</div>}
                     {!errors.firstName && errors.lastName && <div>{errors?.lastName.message}</div>}
                     {!errors.firstName && !errors.lastName && errors.email && <div>{errors?.email.message}</div>}
                     {!errors.firstName && !errors.lastName && !errors.email && errors.phone && <div>{errors?.phone.message}</div>}
                     {!errors.firstName && !errors.lastName && !errors.email && !errors.phone &&  errors.birthday && <div>{errors?.birthday.message}</div>}
+                    {!errors.firstName && !errors.lastName && !errors.email && !errors.phone &&  !errors.birthday && errors.role && <div>{errors?.role.message}</div>}
                     </div>
                  )}   
                 </div>

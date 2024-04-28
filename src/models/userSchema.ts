@@ -7,7 +7,7 @@ export const userSchema: ZodType<{
     birthday: string;
     email: string;
     phone: string;
-    // role: 'viewer' | 'editor'
+    role: 'viewer' | 'editor'
 }> = z.object({
 
     firstName: z
@@ -42,11 +42,11 @@ export const userSchema: ZodType<{
     // .date()
     .string()
     ,
-    // role: z
-    // .union([
-    //     z.literal('editor'),
-    //     z.literal('viewer'),
-    // ])
+    role: z
+    .union([
+        z.literal('editor'),
+        z.literal('viewer'),
+    ])
     
 })
 
