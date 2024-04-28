@@ -37,11 +37,8 @@ export const dartInputStyles = css`
     color: #ccc;
     
     font-size: 14px;
-    transition: all 0.2s;
+    transition: all 0.4s;
 `
-
-
-
 
 export const NavBar = styled.nav`
     display: grid;
@@ -73,7 +70,7 @@ export const Field = styled('input', {
   })<FieldProps>`
     ${dartInputStyles};
     ${({ validated ,error}) => ({
-      borderColor: !validated  ? `#111` : error ? `#f5154dcd` : '#080',
+      borderColor: error ? `#f5154dcd` :!validated  ? `#111` : '#080',
       outline: 'none' ,
     })}
   `;
@@ -152,10 +149,14 @@ export const StUserForm = styled.form`
         justify-content: space-between;
         
         &>div {
+            width: 100px;
             padding-left: 8px;
             display: flex;
             align-items: center;
             color: #61dafb;
+        }
+        &>input{
+            margin: 0 auto;
         }
     }
     &>button[type='submit']{

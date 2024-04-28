@@ -2,8 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import  { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { userSchema, userSchemaType } from '../models/userSchema'
-import {  FormInput,  StUserForm, ToMain } from './Pages.styled'
-import { Button } from '../components/Button/Button'
+import {   ToMain } from './Pages.styled'
+import s from './Pages.module.scss'
 
 function UserForm() {
     const [logError, setLogError] = useState<string>('')
@@ -42,40 +42,47 @@ function UserForm() {
     <>
     <ToMain to="/">Home</ToMain>
         <div className='w-[500px] mx-[auto]'>
-        <StUserForm
+        <form
+            className={s.StUserForm}
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
             noValidate>
                 <label >  <div>First Name</div >
-                    <FormInput
+                    <input
+                    className={s.FormInput}
                      {...register('firstName')}
                     type="text" />
                 </label>
                 <label > <div>Last Name</div>
-                    <FormInput
+                    <input
+                    className={s.FormInput}
                      {...register('lastName')}
                     type="text" />
                 </label>
                 <label > <div>Birthday</div>
-                    <FormInput
+                    <input
+                    className={s.FormInput}
                      {...register('birthday')}
                     type="date" />
                 </label>
                 <label > <div>Email</div>
-                    <FormInput
+                    <input
+                    className={s.FormInput}
                      {...register('email')}
                     type="text" />
                 </label>
                 <label > <div>Phone</div>
-                    <FormInput
+                    <input
+                    className={s.FormInput}
                      {...register('phone')}
                     type="text" />
                 </label>
-                <Button
+                <div className='h-[40px]'></div>
+                <button
                 type="submit"
                 disabled={!isDirty || !isValid || isSubmitting}
-                className='sub  '>submit</Button>
-        </StUserForm>
+                className={s.btn}>submit</button>
+        </form>
         </div>
     </>
   )
