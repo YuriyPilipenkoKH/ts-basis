@@ -6,7 +6,6 @@ import {   ToMain } from './Pages.styled'
 import s from './Pages.module.scss'
 import { cn } from '../lib/utils'
 import { CiSquareChevDown } from "react-icons/ci";
-import { FaCaretSquareDown } from "react-icons/fa";
 import { Dropdown, MenuProps } from 'antd';
 
 
@@ -50,9 +49,7 @@ function UserForm() {
           key: '1',
           label: (
             <button
-            // className={cn('',
-            // isDopAvailable && 'text-orange-600'
-            // )}
+            // className={cn(isAvailable && 'text-orange-600')}
             type='button'
             onClick={()=>{ 
                 setValue('role', 'editor')

@@ -6,6 +6,7 @@ import YupHookForm from "./pages/YupHookForm";
 import Temp from "./pages/Temp";
 import ZodHookForm from "./pages/ZodHookForm";
 import UserForm from "./pages/UserForm";
+import ReactQuery from "./pages/ReactQuery";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route  path="zform" element={<ZodHookForm/>} />
         <Route  path="temp" element={<Temp/>} />
         <Route  path="userForm" element={<UserForm/>} />
+        <Route  path="reactQuery" element={<ReactQuery/>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 

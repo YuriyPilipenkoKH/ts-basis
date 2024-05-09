@@ -23,6 +23,7 @@ const Home = () => {
       <Link to="/zform">Zod HookForm</Link>
       <Link to="/temp">TS templates</Link>
       <Link to="/userForm">UserForm</Link>
+      <Link to="/reactQuery">ReactQuery</Link>
      </NavBar>
 
     </header>
