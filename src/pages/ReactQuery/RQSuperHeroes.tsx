@@ -6,14 +6,23 @@ interface Hero {
     name: string
     alterEgo:string
 }
+const fetchSuperheroes =() => {
+  return  axios.get('http://localhost:4000/superheroes')
+}
 
 function RQSuperHeroesPage() {
-    const {data,  isLoading} = useQuery('superheroes',() => {
-      return  axios.get('http://localhost:4000/superheroes')
-    })
+    const {
+      data,
+      isLoading,
+      isError,
+      error,
+    } = useQuery('superheroes', fetchSuperheroes)
 
     if (isLoading) {
         return <h2>Loading....</h2>
+    }
+    if (isError) {
+        return <h2>{(error as Error).message}</h2>
     }
   return (
     <>

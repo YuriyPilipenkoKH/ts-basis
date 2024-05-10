@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 
 function ReactQuery() {
 	const location = useLocation();
-
+	console.log(location)
   return (
     <>
 		{location.pathname === '/reactQuery' && (
@@ -13,10 +13,8 @@ function ReactQuery() {
 				</div>
 				<Link to="rqSupreheroes">RQ Super Heroes</Link>
 			</>
-
 		)}
 			{location.pathname === '/reactQuery/rqSupreheroes' && (
-
 			<Outlet />
 			)}
     </>
