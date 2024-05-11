@@ -16,7 +16,14 @@ function RQSuperHeroesPage() {
       isLoading,
       isError,
       error,
-    } = useQuery('superheroes', fetchSuperheroes)
+    } = useQuery(
+      'superheroes', 
+      fetchSuperheroes,
+      { 
+        cacheTime:240000 , 
+        staleTime:30000,
+      }
+    )
 
     if (isLoading) {
         return <h2>Loading....</h2>
