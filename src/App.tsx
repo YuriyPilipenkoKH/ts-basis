@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import {QueryClientProvider, QueryClient} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 import Home from "./pages/Home";
 import Zod from "./pages/Zod";
 import YupHookForm from "./pages/YupHookForm";
@@ -28,6 +29,7 @@ function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
     </QueryClientProvider>
   )
   }
