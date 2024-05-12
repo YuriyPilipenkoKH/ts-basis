@@ -1,15 +1,6 @@
-import axios from 'axios'
-import { useQuery } from 'react-query'
-import React, { MouseEventHandler } from 'react'; 
+import  { MouseEventHandler } from 'react'; 
+import { useSuperHeroesData } from '../../hooks/useSupreHeroesData';
 
-interface Hero {
-    id: string
-    name: string
-    alterEgo: string
-}
-const fetchSuperheroes =() => {
-  return  axios.get('http://localhost:4000/superheroes')
-}
 
 function RQSuperHeroesPage() {
 
@@ -19,10 +10,7 @@ function RQSuperHeroesPage() {
   const handleError = () => {
     console.log('Preform side effect after encountering error',error)
   }
-  const handleSelect = (data:any) => {
-    const superheroNames = data?.data.map((hero:Hero) => hero.name )
-    return superheroNames
-  }
+
     const {
       data,
       isLoading,
@@ -30,18 +18,8 @@ function RQSuperHeroesPage() {
       isFetching,
       error,
       refetch,
-    } = useQuery (
-      'superheroes', 
-      fetchSuperheroes,
-      { 
-        cacheTime:240000 , 
-        staleTime:30000 ,
-        // enabled:false ,  // stops fetching on mount
-        onSuccess:handleSuccess,
-        onError:handleError,
-        select:handleSelect,
-      }
-    )
+    } = useSuperHeroesData (handleSuccess, handleError )
+
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
       refetch();
     }
@@ -58,7 +36,7 @@ function RQSuperHeroesPage() {
         <button onClick={handleClick}>Heroes</button> {/* Use handleClick as event handler */}
         {/* Check if data is an array before mapping */}
         {/* {Array.isArray(data?.data) && 
-        data?.data.map((hero:Hero, idx:number) => (
+        data?.data.map((hero:HeroTypes, idx:number) => (
             <div key={idx}>
                 {hero?.name}
             </div>
