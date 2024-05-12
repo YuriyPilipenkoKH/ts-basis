@@ -19,6 +19,10 @@ function RQSuperHeroesPage() {
   const handleError = () => {
     console.log('Preform side effect after encountering error',error)
   }
+  const handleSelect = (data:any) => {
+    const superheroNames = data?.data.map((hero:Hero) => hero.name )
+    return superheroNames
+  }
     const {
       data,
       isLoading,
@@ -35,6 +39,7 @@ function RQSuperHeroesPage() {
         // enabled:false ,  // stops fetching on mount
         onSuccess:handleSuccess,
         onError:handleError,
+        select:handleSelect,
       }
     )
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
@@ -49,16 +54,19 @@ function RQSuperHeroesPage() {
     }
   return (
     <>
-        <h2>  RQ SuperHeroes  </h2>
-        <button
-        onClick={handleClick}> 
-          Heroes 
-        </button>
-      {data?.data.map((hero:Hero, idx:number) => (
-        <div key={idx}>
-            {hero?.name}
-        </div>
-      ))}
+        <h2> RQ SuperHeroes </h2>
+        <button onClick={handleClick}>Heroes</button> {/* Use handleClick as event handler */}
+        {/* Check if data is an array before mapping */}
+        {/* {Array.isArray(data?.data) && 
+        data?.data.map((hero:Hero, idx:number) => (
+            <div key={idx}>
+                {hero?.name}
+            </div>
+        ))} */}
+
+        {data?.map((heroName:string, idx:number) => (
+          <div key={idx}> {heroName} </div>
+        ))}
     </>
   )
 }
