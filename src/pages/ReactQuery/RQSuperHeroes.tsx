@@ -12,6 +12,13 @@ const fetchSuperheroes =() => {
 }
 
 function RQSuperHeroesPage() {
+
+  const handleSuccess = () => {
+    console.log('Preform side effect after data fetching',data)
+  }
+  const handleError = () => {
+    console.log('Preform side effect after encountering error',error)
+  }
     const {
       data,
       isLoading,
@@ -19,18 +26,20 @@ function RQSuperHeroesPage() {
       isFetching,
       error,
       refetch,
-    } = useQuery(
+    } = useQuery (
       'superheroes', 
       fetchSuperheroes,
       { 
         cacheTime:240000 , 
         staleTime:30000 ,
-        enabled:false ,  // stops fetching on mount
+        // enabled:false ,  // stops fetching on mount
+        onSuccess:handleSuccess,
+        onError:handleError,
       }
     )
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
       refetch();
-  };
+    }
 
     if (isLoading || isFetching) {
         return <h2>Loading....</h2>
