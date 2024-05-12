@@ -16,20 +16,32 @@ function App() {
  const queryClient = new QueryClient()
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider
+        client={queryClient}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="zod" element={<Zod />} />
-        <Route path="yupform" element={<YupHookForm />} />
-        <Route path="zform" element={<ZodHookForm />} />
-        <Route path="temp" element={<Temp />} />
-        <Route path="userForm" element={<UserForm />} />
-        <Route path="reactQuery" element={<ReactQuery />}>
-          <Route path="rqSupreheroes" element={<RQSuperHeroesPage />} />
+        <Route  path="/" 
+                element={<Home />} />
+        <Route  path="zod" 
+                element={<Zod />} />
+        <Route  path="yupform" 
+                element={<YupHookForm />} />
+        <Route  path="zform" 
+                element={<ZodHookForm />} />
+        <Route  path="temp" 
+                element={<Temp />} />
+        <Route  path="userForm" 
+                element={<UserForm />} />
+        <Route  path="reactQuery" 
+                element={<ReactQuery />}>
+          <Route  path="rqSupreheroes" 
+                  element={<RQSuperHeroesPage />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route  path="*" 
+                element={<Navigate to="/" />} />
       </Routes>
-      <ReactQueryDevtools initialIsOpen={false} position="bottom-right"/>
+      <ReactQueryDevtools
+        initialIsOpen={false} 
+        position="bottom-right"/>
     </QueryClientProvider>
   )
   }

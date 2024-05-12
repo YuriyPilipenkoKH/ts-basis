@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import React, { MouseEventHandler } from 'react'; 
 
 interface Hero {
     id: string
     name: string
-    alterEgo:string
+    alterEgo: string
 }
 const fetchSuperheroes =() => {
   return  axios.get('http://localhost:4000/superheroes')
@@ -15,17 +16,23 @@ function RQSuperHeroesPage() {
       data,
       isLoading,
       isError,
+      isFetching,
       error,
+      refetch,
     } = useQuery(
       'superheroes', 
       fetchSuperheroes,
       { 
         cacheTime:240000 , 
-        staleTime:30000,
+        staleTime:30000 ,
+        enabled:false ,  // stops fetching on mount
       }
     )
+    const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+      refetch();
+  };
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return <h2>Loading....</h2>
     }
     if (isError) {
@@ -33,9 +40,11 @@ function RQSuperHeroesPage() {
     }
   return (
     <>
-        <h2>
-        RQ SuperHeroes
-        </h2>
+        <h2>  RQ SuperHeroes  </h2>
+        <button
+        onClick={handleClick}> 
+          Heroes 
+        </button>
       {data?.data.map((hero:Hero, idx:number) => (
         <div key={idx}>
             {hero?.name}
