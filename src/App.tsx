@@ -11,6 +11,7 @@ import ReactQuery from "./pages/ReactQuery/ReactQuery";
 import RQSuperHeroesPage from "./pages/ReactQuery/RQSuperHeroes";
 import RQSuperHeroPage from "./pages/ReactQuery/RQSuperHero";
 import ParallelQueriesPage from "./pages/ReactQuery/ParallelQueries";
+import RQFriendPage from "./pages/ReactQuery/RQFriend";
 
 
 
@@ -44,9 +45,13 @@ function App() {
                   element={<RQSuperHeroPage />} />  
           <Route  path="parallel" 
                   element={<ParallelQueriesPage />} />  
+          <Route  path="friends" 
+                  element={<ParallelQueriesPage />} />  
+          <Route  path="friends/:friendId" 
+                  element={<RQFriendPage />} />  
         </Route>
-        <Route  path="*" 
-                element={<Navigate to="/" />} />
+        {/* <Route  path="*" 
+                element={<Navigate to="/" />} /> */}
       </Routes>
       <ReactQueryDevtools
         initialIsOpen={false} 
