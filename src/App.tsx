@@ -7,8 +7,12 @@ import YupHookForm from "./pages/YupHookForm";
 import Temp from "./pages/Temp";
 import ZodHookForm from "./pages/ZodHookForm";
 import UserForm from "./pages/UserForm";
-import ReactQuery from "./pages/ReactQuery";
+import ReactQuery from "./pages/ReactQuery/ReactQuery";
 import RQSuperHeroesPage from "./pages/ReactQuery/RQSuperHeroes";
+import RQSuperHeroPage from "./pages/ReactQuery/RQSuperHero";
+
+
+
 
 
 
@@ -33,11 +37,13 @@ function App() {
                 element={<UserForm />} />
         <Route  path="reactQuery" 
                 element={<ReactQuery />}>
-          <Route  path="rqSupreheroes" 
+          <Route  path="super-heroes" 
                   element={<RQSuperHeroesPage />} />
+          <Route  path="super-heroes/:heroId" 
+                  element={<RQSuperHeroPage />} />  
         </Route>
-        <Route  path="*" 
-                element={<Navigate to="/" />} />
+        {/* <Route  path="*" 
+                element={<Navigate to="/" />} /> */}
       </Routes>
       <ReactQueryDevtools
         initialIsOpen={false} 

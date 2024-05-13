@@ -18,12 +18,12 @@ const Home = () => {
       {/* <input type="text" /> */}
 
       <NavBar>
-      <Link to="/zod">Zod validation</Link>
-      <Link to="/yupform">Yup HookForm</Link>
-      <Link to="/zform">Zod HookForm</Link>
-      <Link to="/temp">TS templates</Link>
-      <Link to="/userForm">UserForm</Link>
-      <Link to="/reactQuery">ReactQuery</Link>
+        <Link to="/zod">Zod validation</Link>
+        <Link to="/yupform">Yup HookForm</Link>
+        <Link to="/zform">Zod HookForm</Link>
+        <Link to="/temp">TS templates</Link>
+        <Link to="/userForm">UserForm</Link>
+        <Link to="/reactQuery">ReactQuery</Link>
      </NavBar>
 
     </header>

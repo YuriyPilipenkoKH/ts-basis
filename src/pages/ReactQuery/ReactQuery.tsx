@@ -8,15 +8,13 @@ function ReactQuery() {
     <>
 		{location.pathname === '/reactQuery' && (
       <>
-				<div>
-					ReactQuery.tsx
-				</div>
-				<Link to="rqSupreheroes">RQ Super Heroes</Link>
-			</>
+			<h1>
+				ReactQuery
+			</h1>
+			<Link to="super-heroes">RQ Super Heroes</Link>
+		</>
 		)}
-			{location.pathname === '/reactQuery/rqSupreheroes' && (
 			<Outlet />
-			)}
     </>
   )
 }

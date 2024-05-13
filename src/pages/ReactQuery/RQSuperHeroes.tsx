@@ -1,5 +1,8 @@
 import  { MouseEventHandler } from 'react'; 
-import { useSuperHeroesData } from '../../hooks/useSupreHeroesData';
+
+import HeroTypes from '../../models/HeroTypes';
+import { Link } from 'react-router-dom';
+import { useSuperHeroesData } from '../../hooks/useSuperHeroesData';
 
 
 function RQSuperHeroesPage() {
@@ -32,19 +35,22 @@ function RQSuperHeroesPage() {
     }
   return (
     <>
-        <h2> RQ SuperHeroes </h2>
-        <button onClick={handleClick}>Heroes</button> {/* Use handleClick as event handler */}
-        {/* Check if data is an array before mapping */}
-        {/* {Array.isArray(data?.data) && 
-        data?.data.map((hero:HeroTypes, idx:number) => (
-            <div key={idx}>
-                {hero?.name}
-            </div>
-        ))} */}
+      <h2> RQ SuperHeroes </h2>
+      <button onClick={handleClick}>Heroes</button>
+     
+      {Array.isArray(data?.data) && 
+      data?.data.map((hero:HeroTypes, idx:number) => (
+          <div key={idx}>
+          <Link 
+          to={`/reactQuery/super-heroes/${hero.id}`}>
+              {hero?.name}
+          </Link>
+          </div>
+      ))}
 
-        {data?.map((heroName:string, idx:number) => (
-          <div key={idx}> {heroName} </div>
-        ))}
+      {/* {data?.map((heroName:string, idx:number) => (
+        <div key={idx}> {heroName} </div>
+      ))} */}
     </>
   )
 }
