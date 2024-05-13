@@ -24,11 +24,12 @@ function RQFriendPage() {
   if (isError) {
       return <h2>{(error as Error).message}</h2>
   }
+
   return (
     <div>
-    <h1>Friend details</h1>
-    <div>{data?.data.name} </div>
-  </div>
+      <h1>Friend details</h1>
+      <div>Name — {data?.data.name} </div>
+    </div>
   )
 }
 

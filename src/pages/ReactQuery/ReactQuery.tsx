@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 function ReactQuery() {
@@ -11,9 +11,10 @@ function ReactQuery() {
 			<h1>
 				ReactQuery
 			</h1>
-			<div>
+			<div style={{display:'grid'}}>
 				<Link to="super-heroes">RQ Super Heroes</Link>
 				<Link to="parallel">RQ Parallel queries</Link>
+				<Link to="dependent">RQ Dependent queries</Link>
 			</div>
 		</>
 		)}

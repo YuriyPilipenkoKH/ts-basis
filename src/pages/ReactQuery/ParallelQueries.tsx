@@ -8,47 +8,54 @@ import HeroTypes from '../../models/HeroTypes'
 
 function ParallelQueriesPage() {
 
-    const {
-        data:friends,
-        isLoading,
-        isError,
-        isFetching,
-        error,
-      } = useFriendsData()
+	const {
+			data:friends,
+			isLoading,
+			isError,
+			isFetching,
+			error,
+		} = useFriendsData(handleSuccess, handleError )
 
-    const {
-        data:superheroes,
+	const {
+			data:superheroes,
+		} = useSuperHeroesData(handleSuccess, handleError )
 
-      } = useSuperHeroesData(handleSuccess, handleError )
+	
+		if (isLoading || isFetching) {
+			return <h2>Loading....</h2>
+		}
+		if (isError) {
+				return <h2>{(error as Error).message}</h2>
+		}
 
   return (
-       <>
-        <h1>ParallelQueriesPage</h1>
-        <div>
-        <h2>Friends</h2>
-        {Array.isArray(friends?.data) &&
-        friends?.data.map((friend:FriendTypes, idx:number) => (
-            <div key={idx}>
-            <Link
-            to={`/reactQuery/friends/${friend.id}`}>
-                {friend?.name}
-            </Link>
-            </div>
-                ))}
-        </div>
-        <div>
-        <h2>Heroes</h2>
-        {Array.isArray(superheroes?.data) &&
-        superheroes?.data.map((hero:HeroTypes, idx:number) => (
-            <div key={idx}>
-            <Link
-            to={`/reactQuery/super-heroes/${hero.id}`}>
-                {hero?.name}
-            </Link>
-            </div>
-                ))}
-        </div>
-       </>
+		<>
+			<h1>ParallelQueriesPage</h1>
+			<div>
+			<h2>Friends</h2>
+			{Array.isArray(friends?.data) &&
+			friends?.data.map((friend:FriendTypes, idx:number) => (
+					<div key={idx}>
+					<Link
+					to={`/reactQuery/friends/${friend.id}`}>
+							{friend?.name}
+					</Link>
+					</div>
+							))}
+			</div>
+			<div>
+			<h2>Heroes</h2>
+			{Array.isArray(superheroes?.data) &&
+			superheroes?.data.map((hero:HeroTypes, idx:number) => (
+					<div key={idx}>
+					<Link
+					to={`/reactQuery/super-heroes/${hero.id}`}>
+							{hero?.name}
+					</Link>
+					</div>
+							))}
+			</div>
+		</>
   )
 }
 

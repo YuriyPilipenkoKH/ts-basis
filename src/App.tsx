@@ -12,11 +12,7 @@ import RQSuperHeroesPage from "./pages/ReactQuery/RQSuperHeroes";
 import RQSuperHeroPage from "./pages/ReactQuery/RQSuperHero";
 import ParallelQueriesPage from "./pages/ReactQuery/ParallelQueries";
 import RQFriendPage from "./pages/ReactQuery/RQFriend";
-
-
-
-
-
+import DependentQueriesPage from "./pages/ReactQuery/DependentQueries";
 
 function App() {
  const queryClient = new QueryClient()
@@ -49,6 +45,8 @@ function App() {
                   element={<ParallelQueriesPage />} />  
           <Route  path="friends/:friendId" 
                   element={<RQFriendPage />} />  
+          <Route  path="dependent" 
+                  element={<DependentQueriesPage />} />  
         </Route>
         {/* <Route  path="*" 
                 element={<Navigate to="/" />} /> */}

@@ -8,8 +8,8 @@ export const useFriendData = (friendId:string, onSuccess:any, onError:any) => {
 		['friends', friendId], 
 		() => fetchFriend(friendId), 
 		{
-				onSuccess,
-				onError,
+            onSuccess,
+            onError,
 		}
 );
 }
