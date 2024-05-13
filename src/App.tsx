@@ -10,6 +10,7 @@ import UserForm from "./pages/UserForm";
 import ReactQuery from "./pages/ReactQuery/ReactQuery";
 import RQSuperHeroesPage from "./pages/ReactQuery/RQSuperHeroes";
 import RQSuperHeroPage from "./pages/ReactQuery/RQSuperHero";
+import ParallelQueriesPage from "./pages/ReactQuery/ParallelQueries";
 
 
 
@@ -41,9 +42,11 @@ function App() {
                   element={<RQSuperHeroesPage />} />
           <Route  path="super-heroes/:heroId" 
                   element={<RQSuperHeroPage />} />  
+          <Route  path="parallel" 
+                  element={<ParallelQueriesPage />} />  
         </Route>
-        {/* <Route  path="*" 
-                element={<Navigate to="/" />} /> */}
+        <Route  path="*" 
+                element={<Navigate to="/" />} />
       </Routes>
       <ReactQueryDevtools
         initialIsOpen={false} 

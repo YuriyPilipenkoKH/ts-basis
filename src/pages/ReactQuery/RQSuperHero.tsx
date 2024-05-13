@@ -1,9 +1,9 @@
-import React from 'react'
 import { useSuperHeroData } from '../../hooks/useSuperHeroData'
 import { useParams } from 'react-router-dom'
 
+
 function RQSuperHeroPage() {
-  const { heroId } = useParams<{ heroId: string }>();
+  const { heroId } = useParams();
   const id = heroId || "0"
 
   const handleSuccess = () => {
@@ -21,7 +21,6 @@ function RQSuperHeroPage() {
     } = useSuperHeroData (id, handleSuccess, handleError )
 
     if (!heroId) {
-      // Handle case where heroId is not provided in the URL
       return <div>No heroId provided</div>;
     }
 
@@ -34,7 +33,7 @@ function RQSuperHeroPage() {
     return (
       <div>
         <h1>SuperHero details</h1>
-        {data?.data.alterEgo}
+        <div>{data?.data.name} — {data?.data.alterEgo}</div>
       </div>
     )
 }

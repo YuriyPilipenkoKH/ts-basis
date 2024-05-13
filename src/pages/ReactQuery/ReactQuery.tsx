@@ -11,7 +11,10 @@ function ReactQuery() {
 			<h1>
 				ReactQuery
 			</h1>
-			<Link to="super-heroes">RQ Super Heroes</Link>
+			<div>
+				<Link to="super-heroes">RQ Super Heroes</Link>
+				<Link to="parallel">RQ Parallel queries</Link>
+			</div>
 		</>
 		)}
 			<Outlet />
