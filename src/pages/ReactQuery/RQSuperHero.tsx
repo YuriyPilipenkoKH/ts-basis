@@ -1,17 +1,12 @@
 import { useSuperHeroData } from '../../hooks/useSuperHeroData'
 import { useParams } from 'react-router-dom'
+import { handleError, handleSuccess } from '../../lib/handlers';
 
 
 function RQSuperHeroPage() {
   const { heroId } = useParams();
   const id = heroId || "0"
 
-  const handleSuccess = () => {
-    console.log('Preform side effect after data fetching',data)
-  }
-  const handleError = () => {
-    console.log('Preform side effect after encountering error',error)
-  }
     const {
       data,
       isLoading,

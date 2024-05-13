@@ -3,16 +3,10 @@ import  { MouseEventHandler } from 'react';
 import HeroTypes from '../../models/HeroTypes';
 import { Link } from 'react-router-dom';
 import { useSuperHeroesData } from '../../hooks/useSuperHeroesData';
+import { handleError, handleSuccess } from '../../lib/handlers';
 
 
 function RQSuperHeroesPage() {
-
-  const handleSuccess = () => {
-    console.log('Preform side effect after data fetching',data)
-  }
-  const handleError = () => {
-    console.log('Preform side effect after encountering error',error)
-  }
 
     const {
       data,
