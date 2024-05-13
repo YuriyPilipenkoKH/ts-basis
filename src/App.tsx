@@ -46,7 +46,8 @@ function App() {
           <Route  path="friends/:friendId" 
                   element={<RQFriendPage />} />  
           <Route  path="dependent" 
-                  element={<DependentQueriesPage />} />  
+                  element={<DependentQueriesPage
+                            email={'martin@m.com'} />} />  
         </Route>
         {/* <Route  path="*" 
                 element={<Navigate to="/" />} /> */}
