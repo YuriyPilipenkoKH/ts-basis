@@ -13,6 +13,8 @@ import RQSuperHeroPage from "./pages/ReactQuery/RQSuperHero";
 import ParallelQueriesPage from "./pages/ReactQuery/ParallelQueries";
 import RQFriendPage from "./pages/ReactQuery/RQFriend";
 import DependentQueriesPage from "./pages/ReactQuery/DependentQueries";
+import CoursePage from "./pages/ReactQuery/Course";
+import PaginatedQueriesPage from "./pages/ReactQuery/PaginatedQueries";
 
 function App() {
  const queryClient = new QueryClient()
@@ -47,7 +49,11 @@ function App() {
                   element={<RQFriendPage />} />  
           <Route  path="dependent" 
                   element={<DependentQueriesPage
-                            email={'martin@m.com'} />} />  
+                    email={'martin@m.com'} />} />  
+          <Route  path="dependent/:courseId" 
+                  element={<CoursePage />} />  
+          <Route  path="paginated" 
+                  element={<PaginatedQueriesPage />} />  
         </Route>
         {/* <Route  path="*" 
                 element={<Navigate to="/" />} /> */}

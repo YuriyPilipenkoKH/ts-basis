@@ -21,7 +21,7 @@ function DependentQueriesPage({email} : DependentQueriesPageProps) {
         data:courses,
 
     } = useCoursesData (channelId, handleSuccess, handleError )
-    console.log(courses?.data.courses)
+    // console.log(courses?.data.courses)
 
     if (isLoading || isFetching) {
         return <h2>Loading....</h2>
@@ -35,13 +35,13 @@ function DependentQueriesPage({email} : DependentQueriesPageProps) {
       <h2>Courses</h2>
 			{Array.isArray(courses?.data.courses) &&
 			courses?.data.courses.map((course:string, idx:number) => (
-					<div key={idx}>
-						<Link
-						to={`/reactQuery/dependent/${idx}`}>
-								{course}
-						</Link>
-					</div>
-            ))}
+				<div key={idx}>
+					<Link
+					to={`/reactQuery/dependent/${idx+1}`}>
+							{course}
+					</Link>
+				</div>
+			))}
     </div>
   )
 }

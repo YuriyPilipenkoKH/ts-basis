@@ -15,6 +15,7 @@ function ReactQuery() {
 				<Link to="super-heroes">RQ Super Heroes</Link>
 				<Link to="parallel">RQ Parallel queries</Link>
 				<Link to="dependent">RQ Dependent queries</Link>
+				<Link to="paginated">RQ Paginated queries</Link>
 			</div>
 		</>
 		)}
