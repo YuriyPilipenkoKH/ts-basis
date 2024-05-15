@@ -54,6 +54,7 @@ function App() {
                   element={<CoursePage />} />  
           <Route  path="paginated" 
                   element={<PaginatedQueriesPage />} />  
+
         </Route>
         {/* <Route  path="*" 
                 element={<Navigate to="/" />} /> */}

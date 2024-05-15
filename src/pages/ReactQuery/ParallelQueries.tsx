@@ -10,22 +10,26 @@ function ParallelQueriesPage() {
 
 	const {
 			data:friends,
-			isLoading,
-			isError,
-			isFetching,
-			error,
+			isLoading: isLoadingFriends,
+			isError: isErrorFriends,
+			isFetching:	isFetchingFriends,
+			error: errorFriends,
 		} = useFriendsData(handleSuccess, handleError )
 
 	const {
 			data:superheroes,
+			isLoading: isLoadingSuperheroes,
+			isError: isErrorSuperheroes,
+			isFetching:	isFetchingSuperheroes,
+			error: errorSuperheroes,
 		} = useSuperHeroesData(handleSuccess, handleError )
 
 	
-		if (isLoading || isFetching) {
+		if (isLoadingFriends || isFetchingFriends || isLoadingSuperheroes || isFetchingSuperheroes) {
 			return <h2>Loading....</h2>
 		}
-		if (isError) {
-				return <h2>{(error as Error).message}</h2>
+		if (isErrorFriends || isErrorSuperheroes ) {
+				return <h2>{((errorFriends || errorSuperheroes) as Error).message}</h2>
 		}
 
   return (

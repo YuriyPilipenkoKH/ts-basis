@@ -5,10 +5,12 @@ import ColorTypes from "../../models/ColorTypes"
 import { useState } from "react"
 
 
-function PaginatedQueriesPage() {
+
+ function PaginatedQueriesPage () {
 	const [pageNumber, setPageNumber] = useState<number>(1)
 	const perPage = 2
-	let totalPages = 0 
+  // const totalPages = await retrieveTotalPages()
+
 	const {
 			data :colors,
 			isLoading,
@@ -16,12 +18,15 @@ function PaginatedQueriesPage() {
 			isFetching,
 			error,
 
-		} = useColorsData (pageNumber, handleSuccess, handleError )
+		} = useColorsData (perPage, pageNumber, handleSuccess, handleError )
 
-		if (Array.isArray(colors)) {
-		 totalPages =  Math.ceil(colors.length / perPage); 
+		console.log('colors',colors?.data,)
 
-		}
+		// if (Array.isArray(colors?.data)) {
+		// 	totalPages =  Math.ceil((colors?.data ?? []).length / perPage);
+		// 	console.log(totalPages)
+		// }
+
 		if (isLoading || isFetching) {
 			return <h2>Loading....</h2>
 		}
@@ -31,7 +36,7 @@ function PaginatedQueriesPage() {
   return (
 	<>
 			<div>PaginatedQueriesPage</div>
-			<h2> RQ SuperHeroes </h2>
+			<h2> RQ Colors </h2>
 		
 			{Array.isArray(colors?.data) && 
 			colors?.data.map((color:ColorTypes, idx:number) => (
@@ -50,7 +55,7 @@ function PaginatedQueriesPage() {
 				</button>
 				<button
 					onClick={()=> setPageNumber(page => page + 1)}
-					disabled={pageNumber === totalPages}  >
+					disabled={pageNumber === 4}  >
 					next
 				</button>
 			</div>
