@@ -29,7 +29,7 @@ function ParallelQueriesPage() {
 			return <h2>Loading....</h2>
 		}
 		if (isErrorFriends || isErrorSuperheroes ) {
-				return <h2>{((errorFriends || errorSuperheroes) as Error).message}</h2>
+			return <h2>{((errorFriends || errorSuperheroes) as Error).message}</h2>
 		}
 
   return (
