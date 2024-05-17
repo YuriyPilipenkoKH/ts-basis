@@ -4,6 +4,7 @@ import HeroTypes from '../../models/HeroTypes';
 import { Link } from 'react-router-dom';
 import { useSuperHeroesData } from '../../hooks/useSuperHeroesData';
 import { handleError, handleSuccess } from '../../lib/handlers';
+import AddHeroForm from './AddHeroForm';
 
 
 function RQSuperHeroesPage() {
@@ -31,6 +32,7 @@ function RQSuperHeroesPage() {
     <>
       <h2> RQ SuperHeroes </h2>
       <button onClick={handleClick}>Heroes</button>
+      <AddHeroForm/>
      
       {Array.isArray(data?.data) && 
       data?.data.map((hero:HeroTypes, idx:number) => (
