@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { AddHeroSchema, AddHeroSchemaType } from '../../models/AddHeroSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AuthError, FormInput, FormLabel, Form_AddNew } from '../../components/RQ/FormStyles.styled'
+import { AuthError, FormAddNew, FormInput, FormLabel} from '../../components/RQ/FormStyles.styled'
 import { cn } from '../../lib/utils'
 
 function AddHeroForm() {
@@ -27,10 +27,12 @@ function AddHeroForm() {
         isSubmitting,
     } = formState
 
-    const onSubmit = async (data: AddHeroSchemaType) => {}
+    const onSubmit = async (data: AddHeroSchemaType) => {
+        console.log(data)
+    }
   return (
     <>
-    <Form_AddNew
+    <FormAddNew
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="off"
         noValidate>
@@ -66,15 +68,13 @@ function AddHeroForm() {
                 {/* {logError && <AuthError className="autherror">{logError}</AuthError>} */}
            </div>
           <button
-          className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-34px]'
+        //   className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-34px]'
           disabled={isSubmitting || !isDirty || !isValid}
           type="submit"  
           >
-           {( isSubmitting ) 
-            ? "Process" 
-            : "Send" }
+           { isSubmitting ? "Process" : "Send" }
            </button>
-    </Form_AddNew>
+    </FormAddNew>
     </>
   )
 }

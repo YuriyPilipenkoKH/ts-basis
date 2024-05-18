@@ -36,6 +36,7 @@ export const baseInputStyles = css`
 
 export const FormInput = styled('input')`
     ${baseInputStyles};
+    width: 250px;
     &::placeholder{
         color: #555;
     }
@@ -93,11 +94,12 @@ export const AuthError = styled('div')`
     white-space: nowrap; 
 `;
 
-export const Form_AddNew = styled('form')`
+export const FormAddNew = styled('form')`
     display: grid;
     gap: 12px;
     grid-template-rows: 70px 70px 28px;
-    height: 195px;
+    height: 240px;
+    width: 260px;
 `;
 
 export const Form_PhoneEdit = styled('form')`
