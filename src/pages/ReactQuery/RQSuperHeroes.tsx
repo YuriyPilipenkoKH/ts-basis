@@ -9,7 +9,9 @@ import { useAddHeroData } from '../../hooks/useSuperHeroData';
 
 
 function RQSuperHeroesPage() {
-  const {mutate: addHero} = useAddHeroData()
+  const {mutate: addHero ,     
+        
+} = useAddHeroData()
 
     const {
       data,
@@ -24,7 +26,7 @@ function RQSuperHeroesPage() {
       refetch();
     }
 
-    if (isLoading || isFetching) {
+    if (isLoading || isFetching ) {
         return <h2>Loading....</h2>
     }
     if (isError) {
@@ -39,7 +41,7 @@ function RQSuperHeroesPage() {
      
       {Array.isArray(data?.data) && 
       data?.data.map((hero:HeroTypes, idx:number) => (
-          <div key={idx}>
+          <div key={idx}>            
           <Link 
           to={`/reactQuery/super-heroes/${hero.id}`}>
               {hero?.name}

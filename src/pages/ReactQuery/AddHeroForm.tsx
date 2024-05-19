@@ -1,10 +1,8 @@
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import { AddHeroSchema, AddHeroSchemaType } from '../../models/AddHeroSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AuthError, FormAddNew, FormInput, FormLabel} from '../../components/RQ/FormStyles.styled'
 import { cn } from '../../lib/utils'
-
 
 interface AddHeroFormProps {
     addHero: any

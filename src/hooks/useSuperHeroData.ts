@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from 'react-query'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
 import fetchSuperhero from '../lib/fetchSuperhero'
 import addSuperhero from '../lib/addSuperhero';
 
@@ -15,5 +15,10 @@ export const useSuperHeroData = (heroId:string, onSuccess:any, onError:any) => {
 }
 
 export const useAddHeroData = ( ) => {
-	return useMutation(addSuperhero)
+	const queryClient = useQueryClient()
+	return useMutation(addSuperhero, {
+		onSuccess: ( ) => {
+			queryClient.invalidateQueries('superheroes')  // to refetch
+		}
+	})
 }
