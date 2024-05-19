@@ -5,7 +5,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { AuthError, FormAddNew, FormInput, FormLabel} from '../../components/RQ/FormStyles.styled'
 import { cn } from '../../lib/utils'
 
-function AddHeroForm() {
+
+interface AddHeroFormProps {
+    addHero: any
+}
+
+function AddHeroForm({addHero}: AddHeroFormProps) {
     const {
         register, 
         handleSubmit,
@@ -15,8 +20,7 @@ function AddHeroForm() {
         defaultValues: {
             name: '',
             alterEgo: '',
-  
-        },
+          },
             mode:'all',
             resolver: zodResolver(AddHeroSchema),
     })
@@ -29,6 +33,7 @@ function AddHeroForm() {
 
     const onSubmit = async (data: AddHeroSchemaType) => {
         console.log(data)
+        addHero(data)
     }
   return (
     <>
@@ -45,7 +50,7 @@ function AddHeroForm() {
             placeholder="name"
             />         
         </FormLabel>
-        <div className='flex gap-4'>
+
             <FormLabel >
               AlterEgo
                 <FormInput
@@ -56,7 +61,6 @@ function AddHeroForm() {
                     />
             </FormLabel>
 
-        </div>
            <div>
                {( errors?.name || errors?.alterEgo  ) && (
                   <AuthError className="autherror">
@@ -68,11 +72,11 @@ function AddHeroForm() {
                 {/* {logError && <AuthError className="autherror">{logError}</AuthError>} */}
            </div>
           <button
-        //   className='contact-create w-[80px] h-[36px] rounded-md absolute bottom-[-34px]'
+          className=' w-[80px] h-[36px] rounded-md text-slate-300 mx-auto'
           disabled={isSubmitting || !isDirty || !isValid}
           type="submit"  
           >
-           { isSubmitting ? "Process" : "Send" }
+           { isSubmitting ? "Process" : "Add Hero" }
            </button>
     </FormAddNew>
     </>

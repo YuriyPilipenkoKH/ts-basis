@@ -1,5 +1,6 @@
-import { useQuery } from 'react-query'
+import { useQuery, useMutation } from 'react-query'
 import fetchSuperhero from '../lib/fetchSuperhero'
+import addSuperhero from '../lib/addSuperhero';
 
 export const useSuperHeroData = (heroId:string, onSuccess:any, onError:any) => {
 
@@ -13,3 +14,6 @@ export const useSuperHeroData = (heroId:string, onSuccess:any, onError:any) => {
 );
 }
 
+export const useAddHeroData = ( ) => {
+	return useMutation(addSuperhero)
+}
